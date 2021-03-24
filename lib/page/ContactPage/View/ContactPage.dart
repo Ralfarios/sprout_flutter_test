@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sprout_flutter_test/core/components/FAB.dart';
 
-import './Model/FetchAPI.dart';
+import '../Model/FetchAPI.dart';
 
-import '../../components/AppBar.dart';
-import '../../components/Drawer.dart';
+import '../../../core/components/AppBar.dart';
+import '../../../core/components/Drawer.dart';
 
 class ContactPage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _ContactPageState extends State<ContactPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56),
-        child: SCAppBar('Contacts'),
+        child: SCAppBar('CONTACTS'),
       ),
       drawer: SCDrawer(),
       body: FutureBuilder(
@@ -24,18 +25,22 @@ class _ContactPageState extends State<ContactPage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
             return Container(
-              child: Center(child: Text('LOADING...')),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
           return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                    title: Text(
-                        '${snapshot.data[index].firstName} ${snapshot.data[index].lastName}'));
+                  title: Text(
+                      '${snapshot.data[index].firstName} ${snapshot.data[index].lastName}'),
+                );
               });
         },
       ),
+      floatingActionButton: SCFab(),
     );
   }
 }

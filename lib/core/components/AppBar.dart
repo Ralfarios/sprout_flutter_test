@@ -10,7 +10,10 @@ class SCAppBar extends StatelessWidget {
     return AppBar(
       centerTitle: true,
       backgroundColor: Color(0xFF01CAA8),
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyle(fontSize: 16, letterSpacing: 2),
+      ),
     );
   }
 }
