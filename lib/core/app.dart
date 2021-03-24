@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../page/ContactPage.dart';
+import '../page/ContactPage/ContactPage.dart';
 
 class SproutContactApp extends StatelessWidget {
   @override
