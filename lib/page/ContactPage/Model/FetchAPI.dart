@@ -6,23 +6,28 @@ import '../ViewModel/User.dart';
 
 class FetchAPI {
   static Future<List<User>> getUser() async {
-    var userData =
-        await http.get(Uri.parse('https://reqres.in/api/users?per_page=12'));
+    try {
+      var userData =
+          await http.get(Uri.parse('https://reqres.in/api/users?per_page=12'));
 
-    var jsonData = json.decode(userData.body)['data'];
+      var jsonData = json.decode(userData.body)['data'];
 
-    List<User> users = [];
+      List<User> users = [];
 
-    for (var el in jsonData) {
-      User user = User(
-        el['id'],
-        el['email'],
-        el['firstName'] = el['first_name'],
-        el['lastName'] = el['last_name'],
-        el['avatar'],
-      );
-      users.add(user);
+      for (var el in jsonData) {
+        User user = User(
+          el['id'],
+          el['email'],
+          el['firstName'] = el['first_name'],
+          el['lastName'] = el['last_name'],
+          el['avatar'],
+        );
+        users.add(user);
+      }
+      return users;
+    } catch (e) {
+      print(e);
+      return null;
     }
-    return users;
   }
 }
